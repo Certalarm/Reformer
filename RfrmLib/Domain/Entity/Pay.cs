@@ -4,11 +4,11 @@ namespace RfrmLib.Domain.Entity
 {
     internal class Pay
     {
-        public double TotalAmount { get; }
+        public string TotalAmount { get; }
         public List<Item> Items { get; set; }
 
         #region .ctors
-        public Pay(double totalAmount, List<Item> items = default)
+        public Pay(string totalAmount, List<Item> items = default)
         {
             TotalAmount = totalAmount;
             Items = items ?? [];

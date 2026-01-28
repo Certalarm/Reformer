@@ -1,67 +1,33 @@
 ﻿using RfrmLib.Data.Interface;
 using RfrmLib.Domain.Entity;
-using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Linq;
+using static RfrmLib.Data.Implementation.XmlDataWriter.XmlDataWriterHelper;
 
 namespace RfrmLib.Data.Implementation.XmlDataWriter
 {
     internal class XmlDataWriter : IXmlDataWriter
     {
-        const string __employees = "Employees";
-        const string __employee = "Employee";
-        const string __salary = "salary";
+        const string __errorBadParams = "Bad params by Write Xml Data";
 
         public string Write(IEnumerable<Employee> employees, string xmlFullFilename)
         {
-            try
-            {
-                using XmlWriter writer = XmlWriter.Create(xmlFullFilename, CreateXmlSettings());
-                WriteEmployees(writer, employees);
-            }
-            catch(Exception ex)
-            {
-                return ex.Message;
-            }
-            return string.Empty;
+            return (IsBadEmployees(employees) || IsBadFilename(xmlFullFilename))
+                ? __errorBadParams
+                : TryWriteEmployees(employees, xmlFullFilename);
         }
 
         public string Write(Pay pay, string xmlFullFilename)
         {
-            throw new NotImplementedException();
+            return (IsBadFilename(xmlFullFilename))
+                ? __errorBadParams
+                : TryWritePay(pay, xmlFullFilename);
         }
 
-        private void WriteEmployees(XmlWriter writer, IEnumerable<Employee> employees)
-        {
-            writer.WriteStartElement(__employees);
-            foreach (var employee in employees)
-                WriteEmployee(writer, employee);
-            writer.WriteEndElement();
-        }
+        private static bool IsBadEmployees(IEnumerable<Employee> employees) =>
+            employees is null || !employees.Any();
 
-        private void WriteEmployee(XmlWriter writer, Employee employee)
-        {
-            writer.WriteStartElement(__employee);
-            writer.WriteAttributeString(nameof(employee.Name).ToLower(), employee.Name);
-            writer.WriteAttributeString(nameof(employee.Surname).ToLower(), employee.Surname);
-            writer.WriteAttributeString(nameof(employee.SalarySum).ToLower(), employee.SalarySum);
-            foreach (var salary in employee.Salaries)
-                WriteSalary(writer, salary);
-            writer.WriteEndElement();
-        }
-
-        private void WriteSalary(XmlWriter writer, Salary salary)
-        {
-            writer.WriteStartElement(__salary);
-            writer.WriteAttributeString(nameof(salary.Amount).ToLower(), salary.Amount);
-            writer.WriteAttributeString(nameof(salary.Mount).ToLower(), salary.Mount);
-            writer.WriteEndElement();
-        }
-
-        private static XmlWriterSettings CreateXmlSettings() =>
-            new()
-            {
-                Indent = true
-            };
+        private static bool IsBadFilename(string filename) =>
+            string.IsNullOrWhiteSpace(filename);
     }
 }
