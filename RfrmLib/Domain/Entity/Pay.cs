@@ -2,7 +2,7 @@
 
 namespace RfrmLib.Domain.Entity
 {
-    internal class Pay
+    public class Pay
     {
         public string TotalAmount { get; }
         public List<Item> Items { get; set; }

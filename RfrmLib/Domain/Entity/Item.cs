@@ -1,6 +1,6 @@
 ﻿namespace RfrmLib.Domain.Entity
 {
-    internal class Item
+    public class Item
     {
         public string Name { get; }
         public string Surname { get; }

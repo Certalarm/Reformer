@@ -59,12 +59,11 @@
     <Compile Include="Domain\Entity\Item.cs" />
     <Compile Include="Domain\Entity\Pay.cs" />
     <Compile Include="Domain\Entity\Salary.cs" />
+    <Compile Include="Domain\UseCase\AddSalarySum\AddSalarySumInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Txt.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\UseCase\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="_InputData\Data1.xml" />
     <Content Include="_InputData\Data2.xml" />

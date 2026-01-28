@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RfrmLib.Data.Interface
 {
-    internal interface IXmlDataReader
+    public interface IXmlDataReader
     {
         public (IEnumerable<Employee>, string) Read(string xmlInputFileFullname, string xmlStyleSheetFullname);
     }
