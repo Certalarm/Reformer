@@ -6,8 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RfrmLib", "RfrmLib\RfrmLib.csproj", "{D63DD551-F278-451D-BA21-55364E9FFA7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RfrmUI", "RfrmUI\RfrmUI.csproj", "{96963EA2-DA2C-46C9-9971-EA1F016625A2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D63DD551-F278-451D-BA21-55364E9FFA7D} = {D63DD551-F278-451D-BA21-55364E9FFA7D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RfrmLib.Tests", "RfrmLib.Tests\RfrmLib.Tests.csproj", "{92ACD0C3-0F78-4F32-9A07-4C5A298C85D4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D63DD551-F278-451D-BA21-55364E9FFA7D} = {D63DD551-F278-451D-BA21-55364E9FFA7D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
