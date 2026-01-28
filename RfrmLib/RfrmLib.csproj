@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Data\Implementation\XmlDataReader\XmlDataReader.cs" />
+    <Compile Include="Data\Implementation\XmlDataWriter\XmlDataWriter.cs" />
     <Compile Include="Data\Interface\IXmlDataReader.cs" />
     <Compile Include="Data\Interface\IXmlDataWriter.cs" />
     <Compile Include="Data\Mapper\EmployeeInputMapper.cs" />
