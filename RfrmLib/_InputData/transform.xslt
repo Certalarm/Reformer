@@ -37,11 +37,11 @@
 	</xsl:template>
 
 	<xsl:template match="item">
-		<salary amount="{translate(@amount,',','.')}" mount="{@mount}"/>
+		<salary amount="{@amount}" mount="{@mount}"/>
 	</xsl:template>
 
 	<xsl:template match="item" mode="month-group">
-		<salary amount="{translate(@amount,',','.')}" mount="{name(..)}" />
+		<salary amount="{@amount}" mount="{name(..)}" />
 	</xsl:template>
 
 	<xsl:key name="employee" match="item" use="concat(@name,'|',@surname)" />

@@ -2,7 +2,7 @@
 <Employees>
   <Employee name="Lena" surname="Ivanova">
     <salary amount="2001" mount="january" />
-    <salary amount="3001.10" mount="february" />
+    <salary amount="3001,10" mount="february" />
     <salary amount="1001.1" mount="march" />
   </Employee>
   <Employee name="Masha" surname="Ivanova">

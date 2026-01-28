@@ -67,7 +67,9 @@
   <ItemGroup>
     <Content Include="_InputData\Data1.xml" />
     <Content Include="_InputData\Data2.xml" />
-    <Content Include="_InputData\transform.xslt" />
+    <Content Include="_InputData\transform.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="_InputData\transform1.xslt" />
     <Content Include="_InputData\transform2.xslt" />
     <Content Include="_OutputData\transform1_result.xml" />
