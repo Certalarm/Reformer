@@ -50,8 +50,12 @@
     <Folder Include="Data\Interface\" />
     <Folder Include="Domain\Entity\" />
     <Folder Include="Domain\UseCase\" />
-    <Folder Include="_InputData\" />
     <Folder Include="_OutputData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_InputData\Data1.xml" />
+    <Content Include="_InputData\Data2.xml" />
+    <Content Include="_InputData\transform1.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
