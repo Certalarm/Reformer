@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Data\Interface\IXmlDataReader.cs" />
+    <Compile Include="Data\Interface\IXmlDataWriter.cs" />
     <Compile Include="Data\Models\EmployeeInput.cs" />
     <Compile Include="Data\Models\ItemInput.cs" />
     <Compile Include="Data\Models\PayInput.cs" />
@@ -58,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Implementation\" />
-    <Folder Include="Data\Interface\" />
     <Folder Include="Domain\UseCase\" />
   </ItemGroup>
   <ItemGroup>
