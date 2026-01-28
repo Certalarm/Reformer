@@ -5,19 +5,18 @@
 	<xsl:template match="/">
 		<Employees>
 			<xsl:choose>
-				 <!--(формат Data1.xml)--> 
+				<!--(формат Data1.xml)--> 
 				<xsl:when test="./Pay/item">
 					<xsl:apply-templates select="Pay" />
 				</xsl:when>
 
-				 <!--(формат Data2.xml)--> 
+				<!--(формат Data2.xml)--> 
 				<xsl:otherwise>
 					<xsl:apply-templates select="Pay" mode="month-group"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</Employees>
 	</xsl:template>
-
 	
 	<xsl:template match="/Pay">
 		<Employees>
@@ -50,6 +49,5 @@
 	</xsl:template>
 
 	<xsl:key name="employee" match="item" use="concat(@name,'|',@surname)" />
-
 
 </xsl:stylesheet>
