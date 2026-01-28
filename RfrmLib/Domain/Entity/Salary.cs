@@ -1,6 +1,6 @@
 ﻿namespace RfrmLib.Domain.Entity
 {
-    internal class Salary
+    public class Salary
     {
         public double Amount { get; }
         public string Mount { get; }

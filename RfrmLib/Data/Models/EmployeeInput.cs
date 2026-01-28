@@ -2,14 +2,14 @@
 
 namespace RfrmLib.Data.Models
 {
-    internal class EmployeeInput
+    public class EmployeeInput
     {
         public string Name { get; }
         public string Surname { get; }
-        public List<SalaryInput> Salaries { get; set; }
+        public IList<SalaryInput> Salaries { get; set; }
 
         #region .ctors
-        public EmployeeInput(string name, string surname, List<SalaryInput> salaries = default)
+        public EmployeeInput(string name, string surname, IList<SalaryInput> salaries = default)
         {
             Name = name;
             Surname = surname;

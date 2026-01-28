@@ -1,6 +1,6 @@
 ﻿namespace RfrmLib.Data.Models
 {
-    internal class SalaryInput
+    public class SalaryInput
     {
         public string Amount { get; }
         public string Mount { get; }

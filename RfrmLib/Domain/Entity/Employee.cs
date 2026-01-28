@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace RfrmLib.Domain.Entity
 {
-    internal class Employee
+    public class Employee
     {
         public string Name { get; }
         public string Surname { get; }

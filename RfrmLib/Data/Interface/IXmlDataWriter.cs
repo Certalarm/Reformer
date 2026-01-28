@@ -5,7 +5,7 @@ namespace RfrmLib.Data.Interface
 {
     internal interface IXmlDataWriter
     {
-        public string Write(IEnumerable<Employee> employees);
-        public string Write(Pay pay);
+        public string Write(IEnumerable<Employee> employees, string xmlFullFilename);
+        public string Write(Pay pay, string xmlFullFilename);
     }
 }

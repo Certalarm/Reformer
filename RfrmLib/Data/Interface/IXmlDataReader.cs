@@ -5,6 +5,6 @@ namespace RfrmLib.Data.Interface
 {
     internal interface IXmlDataReader
     {
-        public IEnumerable<Employee> Read();
+        public (IEnumerable<Employee>, string) Read(string xmlInputFileFullname, string xmlStyleSheetFullname);
     }
 }
