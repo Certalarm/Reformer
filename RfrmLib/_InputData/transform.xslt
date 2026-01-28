@@ -17,27 +17,23 @@
 			</xsl:choose>
 		</Employees>
 	</xsl:template>
-	
+
 	<xsl:template match="/Pay">
-		<Employees>
-			<xsl:for-each select="item[generate-id() = generate-id(key('employee', concat(@name,'|',@surname))[1])]">
-				<Employee name="{@name}" surname="{@surname}">
-					<xsl:apply-templates select="key('employee', concat(@name,'|',@surname))"/>
-				</Employee>
-			</xsl:for-each>
-		</Employees>
+		<xsl:for-each select="item[generate-id() = generate-id(key('employee', concat(@name,'|',@surname))[1])]">
+			<Employee name="{@name}" surname="{@surname}">
+				<xsl:apply-templates select="key('employee', concat(@name,'|',@surname))"/>
+			</Employee>
+		</xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="/Pay" mode="month-group">
-		<Employees>
-			<xsl:for-each select="//item">
-				<xsl:if test="not(preceding::item[@name = current()/@name and @surname = current()/@surname])">
-					<Employee name="{@name}" surname="{@surname}">
-						<xsl:apply-templates select="//item[@name = current()/@name and @surname = current()/@surname]" mode="month-group"/>
-					</Employee>
-				</xsl:if>
-			</xsl:for-each>
-		</Employees>
+		<xsl:for-each select="//item">
+			<xsl:if test="not(preceding::item[@name = current()/@name and @surname = current()/@surname])">
+				<Employee name="{@name}" surname="{@surname}">
+					<xsl:apply-templates select="//item[@name = current()/@name and @surname = current()/@surname]" mode="month-group"/>
+				</Employee>
+			</xsl:if>
+		</xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="item">
