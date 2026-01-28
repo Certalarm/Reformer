@@ -2,6 +2,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D63DD551-F278-451D-BA21-55364E9FFA7D}</ProjectGuid>
@@ -43,14 +46,19 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Data\Models\EmployeeInput.cs" />
+    <Compile Include="Data\Models\ItemInput.cs" />
+    <Compile Include="Data\Models\PayInput.cs" />
     <Compile Include="Data\Models\SalaryInput.cs" />
+    <Compile Include="Domain\Entity\Employee.cs" />
+    <Compile Include="Domain\Entity\Item.cs" />
+    <Compile Include="Domain\Entity\Pay.cs" />
+    <Compile Include="Domain\Entity\Salary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Txt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Implementation\" />
     <Folder Include="Data\Interface\" />
-    <Folder Include="Domain\Entity\" />
     <Folder Include="Domain\UseCase\" />
   </ItemGroup>
   <ItemGroup>
