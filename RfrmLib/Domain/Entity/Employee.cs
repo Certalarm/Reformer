@@ -8,7 +8,7 @@ namespace RfrmLib.Domain.Entity
         public string Name { get; }
         public string Surname { get; }
         public List<Salary> Salaries { get; set; }
-        public double SalarySum => GetSalarySum();
+        public string SalarySum { get; set; }
 
         #region .ctors
         public Employee(string name, string surname, List<Salary> salaries = default)
@@ -18,9 +18,5 @@ namespace RfrmLib.Domain.Entity
             Salaries = salaries ?? [];
         }
         #endregion
-
-        private double GetSalarySum() =>
-            Salaries
-                .Sum(x => x.Amount);
     }
 }

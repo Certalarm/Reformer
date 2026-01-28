@@ -2,11 +2,11 @@
 {
     public class Salary
     {
-        public double Amount { get; }
+        public string Amount { get; }
         public string Mount { get; }
 
         #region .ctors
-        public Salary(double amount, string mount)
+        public Salary(string amount, string mount)
         {
             Amount = amount;
             Mount = mount;

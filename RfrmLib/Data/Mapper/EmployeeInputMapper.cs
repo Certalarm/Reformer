@@ -17,9 +17,9 @@ namespace RfrmLib.Data.Mapper
                 .ToList();
 
         private static Salary ToDomain(this SalaryInput salary) =>
-            new(ToDouble(salary.Amount), salary.Mount);
+            new(salary.Amount, salary.Mount);
 
-        private static double ToDouble(string value) =>
-            double.Parse(value, NumberStyles.Float, CultureInfo.InvariantCulture);
+        //private static double ToDouble(string value) =>
+        //    double.Parse(value, NumberStyles.Float, CultureInfo.InvariantCulture);
     }
 }
