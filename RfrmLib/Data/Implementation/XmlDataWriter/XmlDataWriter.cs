@@ -3,13 +3,12 @@ using RfrmLib.Domain.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using static RfrmLib.Data.Implementation.XmlDataWriter.XmlDataWriterHelper;
+using static RfrmLib.Utility.Txt;
 
 namespace RfrmLib.Data.Implementation.XmlDataWriter
 {
     internal class XmlDataWriter : IXmlDataWriter
     {
-        const string __errorBadParams = "Bad params by Write Xml Data";
-
         public string Write(IEnumerable<Employee> employees, string xmlFullFilename)
         {
             return (IsBadEmployees(employees) || IsBadFilename(xmlFullFilename))

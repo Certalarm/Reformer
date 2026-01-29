@@ -1,18 +1,13 @@
 ﻿using RfrmLib.Data.Interface;
 using RfrmLib.Domain.Entity;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
+using static RfrmLib.Utility.Txt;
 
 namespace RfrmLib.Domain.UseCase.AddSalarySum
 {
     public class AddSalarySumInteractor
     {
-        private const string __dot = ".";
-        private const string __comma = ",";
-        private static readonly string __systemDecimalSeparator =
-            CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-
         private IXmlDataReader _reader;
         private IXmlDataWriter _writer;
 

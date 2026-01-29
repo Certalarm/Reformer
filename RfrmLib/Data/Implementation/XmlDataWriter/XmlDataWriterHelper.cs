@@ -2,17 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using static RfrmLib.Utility.Txt;
 
 namespace RfrmLib.Data.Implementation.XmlDataWriter
 {
     internal static class XmlDataWriterHelper
     {
-        const string __employees = "Employees";
-        const string __employee = "Employee";
-        const string __salary = "salary";
-        const string __pay = "Pay";
-        const string __item = "item";
-
         internal static string TryWriteEmployees(IEnumerable<Employee> employees, string xmlFullFilename)
         {
             try

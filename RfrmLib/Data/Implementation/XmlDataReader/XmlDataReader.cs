@@ -8,19 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Xsl;
+using static RfrmLib.Utility.Txt;
 
 namespace RfrmLib.Data.Implementation.XmlDataReader
 {
     internal class XmlDataReader : IXmlDataReader
     {
-        const string __errorFilenames = "Input filenames are incorrect";
-        const string __employee = "Employee";
-        const string __name = "name";
-        const string __surname = "surname";
-        const string __salary = "salary";
-        const string __amount = "amount";
-        const string __mount = "mount";
-
         #region .ctors
         public XmlDataReader()
         {
