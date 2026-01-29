@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using FluentAssertions;
+﻿using FluentAssertions;
+using RfrmLib.Domain.Entity;
 using RfrmLib.Domain.UseCase.AddSalarySum;
 using RfrmLib.Tests.Fakes;
+using System.Collections.Generic;
+using System.Linq;
+using Xunit;
+using static RfrmLib.Utility.Txt;
 
 namespace RfrmLib.Tests
 {
@@ -18,9 +17,30 @@ namespace RfrmLib.Tests
         public AddSalarySumInteractorTests()
         {
             var reader = new FakeReader();
-            var writer = new FakeWriter();
-            _sut = new AddSalarySumInteractor(reader, writer);
+            _sut = new AddSalarySumInteractor(reader);
         }
-        #region
+        #endregion
+
+        [Fact]
+        public void afterRead_employees_will_has_not_empty_salarySum_and_no_error()
+        {
+            (IEnumerable<Employee> employees, string error) = _sut.Execute("", "");
+
+            error.Should().BeNullOrWhiteSpace();
+            employees.First().SalarySum.Should().NotBeEmpty();
+            employees.Skip(1).First().SalarySum.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public void afterRead_employees_will_has_need_salarySum()
+        {
+            var needSalarySum1 = "6003" + __systemDecimalSeparator + "2";
+            var needSalarySum2 = "6000";
+
+            (IEnumerable<Employee> employees, string error) = _sut.Execute("", "");
+
+            employees.First().SalarySum.Should().Be(needSalarySum1);
+            employees.Skip(1).First().SalarySum.Should().Be(needSalarySum2);
+        }
     }
 }

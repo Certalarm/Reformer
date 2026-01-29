@@ -9,24 +9,22 @@ namespace RfrmLib.Domain.UseCase.AddSalarySum
     public class AddSalarySumInteractor
     {
         private IXmlDataReader _reader;
-        private IXmlDataWriter _writer;
 
         #region .ctors
-        public AddSalarySumInteractor(IXmlDataReader reader, IXmlDataWriter writer)
+        public AddSalarySumInteractor(IXmlDataReader reader)
         {
             _reader = reader;
-            _writer = writer;
         }
         #endregion
 
-        public string Execute(string inputDataFilename, string stylesheetFilename)
+        public (IEnumerable<Employee>, string) Execute(string inputDataFilename, string stylesheetFilename)
         {
             (IEnumerable<Employee> employees, string error) = _reader.Read(inputDataFilename, stylesheetFilename);
             if (error.Length > 0)
-                return error;
+                return (Enumerable.Empty<Employee>(), error);
             foreach(var employee in employees)
                 AddSalarySum(employee);
-            return _writer.Write(employees, outputDataFilename);
+            return (employees, string.Empty);
         }
 
         private void AddSalarySum(Employee employee)
