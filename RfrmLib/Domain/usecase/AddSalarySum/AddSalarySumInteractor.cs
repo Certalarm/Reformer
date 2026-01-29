@@ -19,7 +19,7 @@ namespace RfrmLib.Domain.UseCase.AddSalarySum
         }
         #endregion
 
-        public string Execute(string inputDataFilename, string stylesheetFilename, string outputDataFilename)
+        public string Execute(string inputDataFilename, string stylesheetFilename)
         {
             (IEnumerable<Employee> employees, string error) = _reader.Read(inputDataFilename, stylesheetFilename);
             if (error.Length > 0)
