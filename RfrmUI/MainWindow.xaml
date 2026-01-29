@@ -8,7 +8,24 @@
         Title="Reformer - Task-2" Height="670" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <GroupBox DockPanel.Dock="Top" Height="80" Header="Путь до папки с входными файлами (data1.xml и transform.xslt):" Margin="10,10,10,0" Width="auto">
+            <DockPanel>
+                <DockPanel Height="25">
+                    <TextBlock Background="AliceBlue" DockPanel.Dock="Left" Text="{Binding Folders[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="650"></TextBlock>
+                    <Button IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=RadioButton}}" DockPanel.Dock="Right" Margin="10 0 0 0" Width="65" Click="ButtonIn_Click">Выбрать</Button>
+                </DockPanel>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox DockPanel.Dock="Top" Height="80" Header="Путь до папки с выходными файлами:" Margin="10,10,10,0" Width="auto">
+            <DockPanel Height="25">
+                <DockPanel>
+                    <TextBlock Background="AliceBlue" DockPanel.Dock="Left" Text="{Binding Folders[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="650"></TextBlock>
+                    <Button IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=RadioButton}}" DockPanel.Dock="Right" Margin="10 0 0 0" Width="65" Click="ButtonOut_Click">Выбрать</Button>
+                </DockPanel>
+            </DockPanel>
+        </GroupBox>
+
+
+    </DockPanel>
 </Window>

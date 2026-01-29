@@ -24,10 +24,11 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
             if (HasBadParam(xmlInputFileFullname, xmlStyleSheetFullname))
                 return (Enumerable.Empty<Employee>(), __errorFilenames);
             
-            (XmlReader reader, string error) = TransformToXmlReader(xmlInputFileFullname, xmlStyleSheetFullname);
-            if (error.Length > 0)
-                return (Enumerable.Empty<Employee>(), error);
-            return (ReadTransformed(reader), string.Empty);
+            return ReadWithTransform(xmlInputFileFullname, xmlStyleSheetFullname);
+            //(XmlReader reader, string error) = ReadWithTransform(xmlInputFileFullname, xmlStyleSheetFullname);
+            //if (error.Length > 0)
+            //    return (Enumerable.Empty<Employee>(), error);
+            //return (ReadTransformed(reader), string.Empty);
         }
 
         public (Pay, string) Read(string xmlInputFileFullname)

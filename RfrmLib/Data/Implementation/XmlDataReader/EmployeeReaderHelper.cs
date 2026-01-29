@@ -4,6 +4,7 @@ using RfrmLib.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Xsl;
 using static RfrmLib.Utility.Txt;
@@ -12,33 +13,41 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
 {
     internal static class EmployeeReaderHelper
     {
-        internal static IEnumerable<Employee> ReadTransformed(XmlReader reader)
+        private static IEnumerable<Employee> ReadTransformed(XmlReader reader)
         {
             XmlDocument doc = new();
             IList<Employee> result = [];
+            int i = 0;
+            string dd = "";
             while (reader.Read())
             {
                 if (NeedSkipNode(reader)) continue;
                 var node = SelectEmployeeNode(doc, reader);
-                var employee = ParseEmployee(node);
-                result.Add(employee.ToDomain());
+                var ddd = node.Name;
+
+                //var employee = ParseEmployee(node);
+                //result.Add(employee.ToDomain());
+                ++i;
             }
             return result;
         }
 
-        internal static (XmlReader, string) TransformToXmlReader(string xmlInputFileFullname, string xmlStyleSheetFullname)
+        internal static (IEnumerable<Employee>, string) ReadWithTransform(string xmlInputFileFullname, string xmlStyleSheetFullname)
         {
             var transform = new XslCompiledTransform();
             try
             {
                 transform.Load(xmlStyleSheetFullname);
-                /*using*/ MemoryStream memoryStream = new MemoryStream();
-                /*using*/ XmlWriter writer = XmlWriter.Create(memoryStream);
-                /*using*/ XmlReader reader = XmlReader.Create(xmlInputFileFullname);
+                using MemoryStream memoryStream = new MemoryStream();
+                using XmlWriter writer = XmlWriter.Create(memoryStream);
+                using XmlReader reader = XmlReader.Create(xmlInputFileFullname);
                 transform.Transform(reader, writer);
-                memoryStream.Flush();
+                //memoryStream.Flush();
                 memoryStream.Position = 0;
-                return (XmlReader.Create( memoryStream), string.Empty);
+                (XmlReader reader2, string error) = (XmlReader.Create(memoryStream), string.Empty);
+                return error.Length > 0
+                    ? (Enumerable.Empty<Employee>(), error)
+                    : (ReadTransformed(reader2), string.Empty);
             }
             catch (Exception ex)
             {
@@ -64,7 +73,7 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
             string surname = node.Attributes[__surname]!.Value;
             if (string.IsNullOrWhiteSpace(name) && string.IsNullOrWhiteSpace(surname))
                 return emptyEmployee;
-            var salaries = ParseSalaries(node.ChildNodes);
+            var salaries = new List<SalaryInput>();//ParseSalaries(node.ChildNodes);
             return new EmployeeInput(name, surname, salaries);
         }
 

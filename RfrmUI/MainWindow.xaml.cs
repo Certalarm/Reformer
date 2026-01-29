@@ -45,9 +45,33 @@ namespace RfrmUI
             var tmp = "";
         }
 
-        //private string GetFullInputDir()
-        //{
+        private void ButtonIn_Click(object sender, RoutedEventArgs e)
+        {
+            //var dialog = new FolderBrowserDialog
+            //{
+            //    SelectedPath = Folders[0]
+            //};
+            //if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            //if (Folders[0] != dialog.SelectedPath)
+            //{
+            //    ClearLists();
+            //    Folders[0] = dialog.SelectedPath;
+            //    UpdateWatcher(Folders[0]);
+            //}
+        }
 
-        //}
+        private void ButtonOut_Click(object sender, RoutedEventArgs e)
+        {
+            //var dialog = new FolderBrowserDialog
+            //{
+            //    SelectedPath = Folders[1]
+            //};
+            //if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            //if (Folders[1] != dialog.SelectedPath)
+            //{
+            //    Folders[1] = dialog.SelectedPath;
+            //}
+        }
+
     }
 }
