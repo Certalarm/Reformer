@@ -45,6 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Controllers\AddItemController.cs" />
+    <Compile Include="Controllers\ControllerHelper.cs" />
+    <Compile Include="Controllers\MainFlowController.cs" />
+    <Compile Include="Controllers\Mapper.cs" />
     <Compile Include="Data\Implementation\XmlDataReader\EmployeeReaderHelper.cs" />
     <Compile Include="Data\Implementation\XmlDataReader\PayReaderHelper.cs" />
     <Compile Include="Data\Implementation\XmlDataReader\XmlDataReader.cs" />

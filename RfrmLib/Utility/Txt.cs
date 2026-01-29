@@ -29,5 +29,7 @@ namespace RfrmLib.Utility
         public const string __tab = "\t";
         public static readonly string __rn = Environment.NewLine;
         public const string __total = "Total";
+
+        public const string __splitter = "|";
     }
 }
