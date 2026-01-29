@@ -87,6 +87,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddItemInteractorTests.cs" />
     <Compile Include="AddSalarySumInteractorTests.cs" />
     <Compile Include="AddTotalAmountInteractorTests.cs" />
     <Compile Include="Data\Employees.cs" />

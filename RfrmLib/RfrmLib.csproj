@@ -61,6 +61,7 @@
     <Compile Include="Domain\Entity\Item.cs" />
     <Compile Include="Domain\Entity\Pay.cs" />
     <Compile Include="Domain\Entity\Salary.cs" />
+    <Compile Include="Domain\UseCase\AddItem\AddItemInteractor.cs" />
     <Compile Include="Domain\UseCase\AddSalarySum\AddSalarySumInteractor.cs" />
     <Compile Include="Domain\UseCase\AddTotalAmount\AddTotalAmountInteractor.cs" />
     <Compile Include="Domain\UseCase\GetEmployeesAmounts\GetEmployeesAmountsInteractor.cs" />
