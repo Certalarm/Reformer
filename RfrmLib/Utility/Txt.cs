@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace RfrmLib.Utility
 {
@@ -23,5 +24,10 @@ namespace RfrmLib.Utility
         public static readonly string __systemDecimalSeparator =
             CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
+        public const string __space = " ";
+        public const string __colon = ":";
+        public const string __tab = "\t";
+        public static readonly string __rn = Environment.NewLine;
+        public const string __total = "Total";
     }
 }

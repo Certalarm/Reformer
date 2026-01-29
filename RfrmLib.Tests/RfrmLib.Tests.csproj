@@ -93,6 +93,7 @@
     <Compile Include="Data\Pays.cs" />
     <Compile Include="Fakes\FakeReader.cs" />
     <Compile Include="Fakes\FakeWriter.cs" />
+    <Compile Include="GetEmployeesAmountsInteractorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveEmployeesInteractorTests.cs" />
     <Compile Include="SavePayInteractorTests.cs" />

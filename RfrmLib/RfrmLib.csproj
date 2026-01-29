@@ -63,6 +63,7 @@
     <Compile Include="Domain\Entity\Salary.cs" />
     <Compile Include="Domain\UseCase\AddSalarySum\AddSalarySumInteractor.cs" />
     <Compile Include="Domain\UseCase\AddTotalAmount\AddTotalAmountInteractor.cs" />
+    <Compile Include="Domain\UseCase\GetEmployeesAmounts\GetEmployeesAmountsInteractor.cs" />
     <Compile Include="Domain\UseCase\InteractorHelper.cs" />
     <Compile Include="Domain\UseCase\SaveEmployees\SaveEmployeesInteractor.cs" />
     <Compile Include="Domain\UseCase\SavePay\SavePayInteractor.cs" />
