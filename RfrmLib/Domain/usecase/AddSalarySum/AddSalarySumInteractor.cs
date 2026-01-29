@@ -2,7 +2,7 @@
 using RfrmLib.Domain.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using static RfrmLib.Utility.Txt;
+using static RfrmLib.Domain.UseCase.InteractorHelper;
 
 namespace RfrmLib.Domain.UseCase.AddSalarySum
 {
@@ -37,13 +37,5 @@ namespace RfrmLib.Domain.UseCase.AddSalarySum
                 ? salaries
                     .Sum(x => ToDouble(x.Amount))
                 : 0;
-
-        private static double ToDouble(string value) =>
-            double.Parse(NormalizeDecimalSeparator(value));
-
-        private static string NormalizeDecimalSeparator(string value) =>
-            value
-                .Replace(__comma, __dot)
-                .Replace(__dot, __systemDecimalSeparator);
     }
 }

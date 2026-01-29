@@ -22,7 +22,7 @@ namespace RfrmLib.Tests
         #endregion
 
         [Fact]
-        public void afterRead_employees_will_has_not_empty_salarySum_and_no_error()
+        public void afterAdd_employees_will_has_not_empty_salarySum_and_no_error()
         {
             (IEnumerable<Employee> employees, string error) = _sut.Execute("", "");
 
@@ -32,7 +32,7 @@ namespace RfrmLib.Tests
         }
 
         [Fact]
-        public void afterRead_employees_will_has_need_salarySum()
+        public void afterAdd_employees_will_has_need_salarySum()
         {
             var needSalarySum1 = "6003" + __systemDecimalSeparator + "2";
             var needSalarySum2 = "6000";

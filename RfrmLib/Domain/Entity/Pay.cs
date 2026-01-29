@@ -4,7 +4,7 @@ namespace RfrmLib.Domain.Entity
 {
     public class Pay
     {
-        public string TotalAmount { get; }
+        public string TotalAmount { get; set; }
         public List<Item> Items { get; set; }
 
         #region .ctors

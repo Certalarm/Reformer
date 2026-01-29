@@ -14,7 +14,7 @@ namespace RfrmLib.Tests.Fakes
 
         public (Pay, string) Read(string xmlInputFileFullname)
         {
-            throw new System.NotImplementedException();
+            return (Pays.Get(), string.Empty);
         }
     }
 }
