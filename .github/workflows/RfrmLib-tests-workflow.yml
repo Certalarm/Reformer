@@ -15,7 +15,7 @@ jobs:  # Определяет набор задач (jobs), которые бу�
           nuget restore Reformer.sln # Ваш sln-файл решения
       - name: Build solution
         run: |
-          msbuild /p:Configuration=Release /m Reformer.sln # Сборка решения
+          & "${env:ProgramFiles}\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\msbuild.exe" /m Reformer.sln # Сборка решения
       - name: Run tests
         working-directory: RfrmLib.Tests
         run: dotnet test RfrmLib.Tests.csproj --verbosity normal  # Выполняет команду dotnet test для запуска юнит-тестов
