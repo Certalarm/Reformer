@@ -6,6 +6,7 @@ namespace RfrmLib.Utility
     {
         public const string __errorBadParams = "Bad params by Write Xml Data";
         public const string __errorFilenames = "Input filenames are incorrect";
+        public const string __errorNullData = "Data is null";
 
         public const string __name = "name";
         public const string __surname = "surname";

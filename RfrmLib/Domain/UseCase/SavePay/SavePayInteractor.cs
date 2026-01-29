@@ -20,6 +20,9 @@ namespace RfrmLib.Domain.UseCase.SavePay
             if (string.IsNullOrWhiteSpace(outputDataFilename))
                 return __errorFilenames;
 
+            if (pay is null)
+                return __errorNullData;
+
             return _writer.Write(pay, outputDataFilename);  
         }
     }

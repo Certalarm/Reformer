@@ -94,6 +94,8 @@
     <Compile Include="Fakes\FakeReader.cs" />
     <Compile Include="Fakes\FakeWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveEmployeesInteractorTests.cs" />
+    <Compile Include="SavePayInteractorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RfrmLib\RfrmLib.csproj">

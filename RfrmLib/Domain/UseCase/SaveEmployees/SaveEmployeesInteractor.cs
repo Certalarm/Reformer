@@ -21,6 +21,9 @@ namespace RfrmLib.Domain.UseCase.SaveEmployees
             if (string.IsNullOrWhiteSpace(outputDataFilename))
                 return __errorFilenames;
 
+            if (employees is null)
+                return __errorNullData;
+
             return _writer.Write(employees, outputDataFilename);
         }
     }
