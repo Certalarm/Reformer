@@ -60,6 +60,8 @@
     <Compile Include="Domain\Entity\Pay.cs" />
     <Compile Include="Domain\Entity\Salary.cs" />
     <Compile Include="Domain\UseCase\AddSalarySum\AddSalarySumInteractor.cs" />
+    <Compile Include="Domain\UseCase\SaveEmployees\SaveEmployeesInteractor.cs" />
+    <Compile Include="Domain\UseCase\SavePay\SavePayInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Txt.cs" />
   </ItemGroup>

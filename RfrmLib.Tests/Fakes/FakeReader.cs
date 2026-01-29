@@ -1,6 +1,6 @@
 ﻿using RfrmLib.Data.Interface;
 using RfrmLib.Domain.Entity;
-using System;
+using RfrmLib.Tests.Data;
 using System.Collections.Generic;
 
 namespace RfrmLib.Tests.Fakes
@@ -9,7 +9,7 @@ namespace RfrmLib.Tests.Fakes
     {
         public (IEnumerable<Employee>, string) Read(string xmlInputFileFullname, string xmlStyleSheetFullname)
         {
-            throw new NotImplementedException();
+            return (Employees.Get(), string.Empty);
         }
     }
 }
