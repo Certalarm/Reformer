@@ -6,5 +6,7 @@ namespace RfrmLib.Data.Interface
     public interface IXmlDataReader
     {
         public (IEnumerable<Employee>, string) Read(string xmlInputFileFullname, string xmlStyleSheetFullname);
+
+        public (Pay, string) Read(string xmlInputFileFullname);
     }
 }

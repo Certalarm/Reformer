@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Data\Implementation\XmlDataReader\EmployeeReaderHelper.cs" />
+    <Compile Include="Data\Implementation\XmlDataReader\PayReaderHelper.cs" />
     <Compile Include="Data\Implementation\XmlDataReader\XmlDataReader.cs" />
     <Compile Include="Data\Implementation\XmlDataWriter\XmlDataWriter.cs" />
     <Compile Include="Data\Implementation\XmlDataWriter\XmlDataWriterHelper.cs" />

@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="AddSalarySumInteractorTests.cs" />
     <Compile Include="Data\Employees.cs" />
+    <Compile Include="Data\Pays.cs" />
     <Compile Include="Fakes\FakeReader.cs" />
     <Compile Include="Fakes\FakeWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

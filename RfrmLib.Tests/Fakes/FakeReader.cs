@@ -11,5 +11,10 @@ namespace RfrmLib.Tests.Fakes
         {
             return (Employees.Get(), string.Empty);
         }
+
+        public (Pay, string) Read(string xmlInputFileFullname)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
