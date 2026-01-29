@@ -1,0 +1,34 @@
+name: RfrmLib Build and Test  # Имя workflow, отображается в интерфейсе GitHub Actions
+on: 
+  push:  # Запускается при каждом push в репозиторий
+    branches:
+      - dev # ветки, для которых нужно запускать тесты
+  pull_request:
+
+jobs:  # Определяет набор задач (jobs), которые будут выполнены
+  service-build:  # Имя задачи
+    runs-on: ubuntu-latest  # на каком окружении будет выполняться задача (последняя версия Ubuntu)
+    container: mcr.microsoft.com/dotnet/sdk:9.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore dependencies
+        run: dotnet restore RfrmLib
+      - name: Build project
+        run: dotnet build RfrmLib --no-restore
+  domain-unit-test:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:9.0
+    needs: [service-build]
+    steps:  # Список шагов, которые будут выполнены в рамках задачи
+      - uses: actions/checkout@v4  # Использует action для извлечения кода репозитория
+      - name: Setup .NET Core  # Имя шага
+        uses: actions/setup-dotnet@v3  # Использует action для установки .NET Core SDK
+        with:
+          dotnet-version: '9.x'  # Укажите версию .NET SDK, которую необходимо установить
+      - name: Install dependencies  # Установка зависимостей проекта
+        run: dotnet restore RfrmLib.Tests/RfrmLib.Tests.csproj # Выполняет команду dotnet restore для установки NuGet-пакетов
+      - name: Build  # Сборка проекта
+        run: dotnet build RfrmLib.Tests/RfrmLib.Tests.csproj --configuration Debug --no-restore  # Выполняет команду dotnet build для сборки проекта в режиме Debug
+      - name: Test  # Запуск тестов
+        working-directory: RfrmLib.Tests
+        run: dotnet test RfrmLib.Tests.csproj --verbosity normal  # Выполняет команду dotnet test для запуска юнит-тестов
