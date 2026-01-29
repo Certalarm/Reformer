@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RfrmLib\RfrmLib.csproj">
+      <Project>{d63dd551-f278-451d-ba21-55364e9ffa7d}</Project>
+      <Name>RfrmLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

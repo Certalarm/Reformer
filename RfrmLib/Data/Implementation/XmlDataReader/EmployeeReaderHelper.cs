@@ -32,12 +32,13 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
             try
             {
                 transform.Load(xmlStyleSheetFullname);
-                using MemoryStream memoryStream = new MemoryStream();
-                using XmlWriter writer = XmlWriter.Create(memoryStream);
-                using XmlReader reader = XmlReader.Create(xmlInputFileFullname);
+                /*using*/ MemoryStream memoryStream = new MemoryStream();
+                /*using*/ XmlWriter writer = XmlWriter.Create(memoryStream);
+                /*using*/ XmlReader reader = XmlReader.Create(xmlInputFileFullname);
                 transform.Transform(reader, writer);
+                memoryStream.Flush();
                 memoryStream.Position = 0;
-                return (XmlReader.Create(memoryStream), string.Empty);
+                return (XmlReader.Create( memoryStream), string.Empty);
             }
             catch (Exception ex)
             {
