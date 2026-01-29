@@ -7,28 +7,13 @@ on:
 jobs:  # Определяет набор задач (jobs), которые будут выполнены
   service-build:  # Имя задачи
     runs-on: windows-latest  # на каком окружении будет выполняться задача
-    #container: mcr.microsoft.com/dotnet/sdk:9.0
-    steps:
-      - uses: actions/checkout@v4
-      - name: Restore dependencies
-        run: dotnet restore RfrmLib
-      - name: Build project
-        run: dotnet build RfrmLib --no-restore
-  domain-unit-test:
-    runs-on: ubuntu-latest
-    container: mcr.microsoft.com/dotnet/sdk:9.0
-    needs: [service-build]
     steps:  # Список шагов, которые будут выполнены в рамках задачи
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Setup MSBuild for .NET Framework
-        uses: jimmychou1989/setup-dotnet-framework-build-tools@v1
-        with:
-          version: '4.8' # Устанавливаем версию среды разработки .NET Framework
       - name: Restore NuGet packages
-        run: nuget restore YourSolution.sln # Ваш sln-файл решения
+        run: nuget restore Reformer.sln # Ваш sln-файл решения
       - name: Build solution
-        run: msbuild /p:Configuration=Release /m YourSolution.sln # Сборка решения
+        run: msbuild /p:Configuration=Release /m Reformer.sln # Сборка решения
       - name: Run tests
         working-directory: RfrmLib.Tests
         run: dotnet test RfrmLib.Tests.csproj --verbosity normal  # Выполняет команду dotnet test для запуска юнит-тестов
