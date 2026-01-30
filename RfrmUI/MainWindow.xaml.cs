@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Threading;
 
 namespace RfrmUI
@@ -36,12 +37,22 @@ namespace RfrmUI
             ReportLW.ItemsSource = Report;
         }
 
+        private void Button_ChangeInputFolder_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeFolder(0);
+        }
+
+        private void Button_ChangeOutputFolder_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeFolder(1);
+        }
+
         private void Button_OpenInputData_Click(object sender, RoutedEventArgs e)
         {
             StartProcess(__explorerName, Folders[0]);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_OpenOutputData_Click(object sender, RoutedEventArgs e)
         {
             StartProcess(__explorerName, Folders[1]);
         }
@@ -102,5 +113,16 @@ namespace RfrmUI
 
         private bool IsItemTBsNotEmpty() =>
             NameTB.Text.Length > 0 && SurnameTB.Text.Length > 0 && AmountTB.Text.Length > 0 && MountTB.Text.Length > 0;
+
+        private void ChangeFolder(int folderIndex)
+        {
+            var dialog = new FolderBrowserDialog
+            {
+                SelectedPath = Folders[folderIndex]
+            };
+            if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            if (Folders[folderIndex] != dialog.SelectedPath)
+                Folders[folderIndex] = dialog.SelectedPath;
+        }
     }
 }
