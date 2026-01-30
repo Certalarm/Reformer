@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RfrmLib.Controllers;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using RfrmLib.Controllers;
 
 namespace RfrmUI
 {
@@ -27,22 +28,30 @@ namespace RfrmUI
         private const string __transformFilename = "transform.xslt";
         private const string __outputFilename = "employees.xml";
 
+        public ObservableCollection<string> Folders { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Report{ get; set; } = new ObservableCollection<string>();
 
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
 
             var appFullDir = AppDomain.CurrentDomain.BaseDirectory;
             var inputFullDir = Path.Combine(appFullDir, __inputDir);
             var outputFullDir = Path.Combine(appFullDir, __outputDir);
-            var inputFullFilename = Path.Combine(inputFullDir, __inputFilename);
-            var tramsformFullFilename = Path.Combine(inputFullDir, __transformFilename);
-            var outputFullFilename = Path.Combine(outputFullDir, __outputFilename);
 
-            MainFlowController controller = new MainFlowController();
-            var result = controller.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename);
+            Folders.Add(inputFullDir);
+            Folders.Add(outputFullDir);
 
-            var tmp = "";
+            var inputFullFilename = Path.Combine(Folders[0], __inputFilename);
+            var tramsformFullFilename = Path.Combine(Folders[0], __transformFilename);
+            var outputFullFilename = Path.Combine(Folders[1], __outputFilename);
+
+
+            //AddItemController aiController = new AddItemController();
+            //var result = aiController.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename,
+            //    "Lena|Ivanova|1234.5|april");
+
         }
 
         private void ButtonIn_Click(object sender, RoutedEventArgs e)
@@ -73,5 +82,18 @@ namespace RfrmUI
             //}
         }
 
+        private void ProcessingMainFlow(string inputFullFilename, string tramsformFullFilename, string outputFullFilename)
+        {
+            MainFlowController controller = new MainFlowController();
+            Report = new ObservableCollection<string>(
+                controller.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename));
+        }
+
+        private void ProcessingAddItemFlow(string inputFullFilename, string tramsformFullFilename, string outputFullFilename, string item)
+        {
+            AddItemController controller = new AddItemController();
+            Report = new ObservableCollection<string>(
+                controller.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename, item));
+        }
     }
 }

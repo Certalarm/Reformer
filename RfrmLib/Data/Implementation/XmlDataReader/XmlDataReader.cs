@@ -3,7 +3,6 @@ using RfrmLib.Domain.Entity;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using static RfrmLib.Data.Implementation.XmlDataReader.EmployeeReaderHelper;
 using static RfrmLib.Data.Implementation.XmlDataReader.PayReaderHelper;
 using static RfrmLib.Utility.Txt;
@@ -25,10 +24,6 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
                 return (Enumerable.Empty<Employee>(), __errorFilenames);
             
             return ReadWithTransform(xmlInputFileFullname, xmlStyleSheetFullname);
-            //(XmlReader reader, string error) = ReadWithTransform(xmlInputFileFullname, xmlStyleSheetFullname);
-            //if (error.Length > 0)
-            //    return (Enumerable.Empty<Employee>(), error);
-            //return (ReadTransformed(reader), string.Empty);
         }
 
         public (Pay, string) Read(string xmlInputFileFullname)

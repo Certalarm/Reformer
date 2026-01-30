@@ -6,12 +6,8 @@ using RfrmLib.Domain.UseCase.AddTotalAmount;
 using RfrmLib.Domain.UseCase.GetEmployeesAmounts;
 using RfrmLib.Domain.UseCase.SaveEmployees;
 using RfrmLib.Domain.UseCase.SavePay;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RfrmLib.Controllers
 {
@@ -43,7 +39,6 @@ namespace RfrmLib.Controllers
 
             GetEmployeesAmountsInteractor geai = new GetEmployeesAmountsInteractor();
             return geai.Execute(employees);
-
         }
 
         internal static string GetNewInputDataFilename(string inputDataFilename, string outputDataFilename) =>
