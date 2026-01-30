@@ -143,3 +143,4 @@ Xslt-преобразование:
     ├── MainWindow.xaml											Разметка xaml основного окна
     └── MainWindow.xaml.cs										Логика основного окна
 ```
+Архив с исполняемыми файлами программы и библиотеки [здесь](https://github.com/Certalarm/Reformer/blob/dev/_assets/Reformer.zip). Не требует установки.
