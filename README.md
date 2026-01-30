@@ -69,4 +69,76 @@ Xslt-преобразование:
 Также есть файлы решения задачи по шагам. Для `Data1.xml` [здесь](https://github.com/Certalarm/Reformer/blob/dev/_InputData/transform1.xslt). Для `Data2.xml` [здесь](https://github.com/Certalarm/Reformer/blob/dev/_InputData/transform2.xslt).
 
 ### `TASK-2`
-
+#### ЧТО СДЕЛАНО?
+Все пункты ТЗ, включая необязательный 5 пункт.
+#### ДОПОЛНИТЕЛЬНО
+- Написаны юнит-тесты.
+- Настроен автозапуск тестов на `Github Actions` при каждом коммите в удаленный репозиторий.
+#### Решение (Solution) состоит из 3 проектов:
+- RfrmLib - Библиотека с логикой решения задачи.
+- RfmrUI - GUI для отображения результатов и ввода входных данных. Написан на WPF.
+- RfrmLib.Tests - Юнит-тесты для библиотеки RfrmLib.
+#### Структура решения:
+```
+.
+├── RfrmLib												Проект с библиотекой rfrmlib.dll
+│   ├── Controllers											Контроллеры
+│   │   ├── AddItemController.cs								Для Добавления Item (пункт 5 ТЗ)
+│   │   ├── ControllerHelper.cs
+│   │   ├── MainFlowController.cs								Основной контроллер (пункты 2-4 ТЗ)
+│   │   └── Mapper.cs
+│   ├── Data												Слой данных
+│   │   ├── Implementation
+│   │   │   ├── XmlDataReader									Реализация IXmlDataReader для чтения xml 
+│   │   │   │   ├── EmployeeReaderHelper.cs			
+│   │   │   │   ├── PayReaderHelper.cs
+│   │   │   │   └── XmlDataReader.cs
+│   │   │   └── XmlDataWriter									Реализация IXmlDataWriter для записи xml
+│   │   │       ├── XmlDataWriter.cs
+│   │   │       └── XmlDataWriterHelper.cs
+│   │   └── Interface											Абстракции для чтения/записи xml
+│   │       ├── IXmlDataReader.cs
+│   │       └── IXmlDataWriter.cs
+│   ├── Domain												Доменный слой
+│   │   ├── Entity												Доменные сущности
+│   │   │   ├── Employee.cs
+│   │   │   ├── Item.cs
+│   │   │   ├── Pay.cs
+│   │   │   └── Salary.cs
+│   │   └── UseCase												Варианты использования (пункты 2-5 ТЗ)
+│   │       ├── AddItem
+│   │       │   └── AddItemInteractor.cs
+│   │       ├── AddSalarySum
+│   │       │   └── AddSalarySumInteractor.cs
+│   │       ├── AddTotalAmount
+│   │       │   └── AddTotalAmountInteractor.cs
+│   │       ├── GetEmployeesAmounts
+│   │       │   └── GetEmployeesAmountsInteractor.cs
+│   │       ├── SaveEmployees
+│   │       │   └── SaveEmployeesInteractor.cs
+│   │       ├── SavePay
+│   │       │   └── SavePayInteractor.cs
+│   │       └── InteractorHelper.cs
+│   └── Utility
+│       └── Txt.cs												Текстовые ресурсы библиотеки
+│
+├── RfrmLib.Tests											Проект с Юнит-тестами библиотеки 
+│   ├── Data													Исходные данные для тестов
+│   │   ├── Employees.cs
+│   │   └── Pays.cs
+│   ├── Fakes													Фейковые реализации reader'a / writer'a
+│   │   ├── FakeReader.cs
+│   │   └── FakeWriter.cs
+│   ├── AddItemInteractorTests.cs
+│   ├── AddSalarySumInteractorTests.cs
+│   ├── AddTotalAmountInteractorTests.cs
+│   ├── GetEmployeesAmountsInteractorTests.cs
+│   ├── SaveEmployeesInteractorTests.cs
+│   └── SavePayInteractorTests.cs
+│
+└── RfrmUI													Проект с GUI, точка входа в программу
+    ├── App.xaml
+    ├── App.xaml.cs
+    ├── MainWindow.xaml											Разметка xaml основного окна
+    └── MainWindow.xaml.cs										Логика основного окна
+```
