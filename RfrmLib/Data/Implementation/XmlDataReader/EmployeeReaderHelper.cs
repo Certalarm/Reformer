@@ -1,10 +1,7 @@
-﻿using RfrmLib.Data.Mapper;
-using RfrmLib.Data.Models;
-using RfrmLib.Domain.Entity;
+﻿using RfrmLib.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml;
 using System.Xml.Xsl;
 using static RfrmLib.Utility.Txt;
@@ -13,25 +10,6 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
 {
     internal static class EmployeeReaderHelper
     {
-        private static IEnumerable<Employee> ReadTransformed(XmlReader reader)
-        {
-            XmlDocument doc = new();
-            IList<Employee> result = [];
-            int i = 0;
-            string dd = "";
-            while (reader.Read())
-            {
-                if (NeedSkipNode(reader)) continue;
-                var node = SelectEmployeeNode(doc, reader);
-                var ddd = node.Name;
-
-                //var employee = ParseEmployee(node);
-                //result.Add(employee.ToDomain());
-                ++i;
-            }
-            return result;
-        }
-
         internal static (IEnumerable<Employee>, string) ReadWithTransform(string xmlInputFileFullname, string xmlStyleSheetFullname)
         {
             var transform = new XslCompiledTransform();
@@ -42,12 +20,7 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
                 using XmlWriter writer = XmlWriter.Create(memoryStream);
                 using XmlReader reader = XmlReader.Create(xmlInputFileFullname);
                 transform.Transform(reader, writer);
-                //memoryStream.Flush();
-                memoryStream.Position = 0;
-                (XmlReader reader2, string error) = (XmlReader.Create(memoryStream), string.Empty);
-                return error.Length > 0
-                    ? (Enumerable.Empty<Employee>(), error)
-                    : (ReadTransformed(reader2), string.Empty);
+                return (ReadEmployees(memoryStream), string.Empty);
             }
             catch (Exception ex)
             {
@@ -55,39 +28,74 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
             }
         }
 
-        private static bool NeedSkipNode(XmlReader xmlReader) =>
-            xmlReader.NodeType != XmlNodeType.Element || xmlReader.Name != __employee;
-
-        private static XmlNode SelectEmployeeNode(XmlDocument doc, XmlReader xmlReader)
+        private static IEnumerable<Employee> ReadEmployees(MemoryStream memoryStream)
         {
-            doc.LoadXml(xmlReader.ReadOuterXml());
-            return doc.SelectSingleNode(__employee)!;
+            memoryStream.Position = 0;       
+            using XmlReader reader = XmlReader.Create(memoryStream);
+            return ReadTransformed(reader);
         }
 
-        private static EmployeeInput ParseEmployee(XmlNode node)
+        private static IEnumerable<Employee> ReadTransformed(XmlReader reader)
         {
-            var emptyEmployee = new EmployeeInput(string.Empty, string.Empty);
-            if (node.Attributes!.Count < 1)
-                return emptyEmployee;
-            string name = node.Attributes[__name]!.Value;
-            string surname = node.Attributes[__surname]!.Value;
-            if (string.IsNullOrWhiteSpace(name) && string.IsNullOrWhiteSpace(surname))
-                return emptyEmployee;
-            var salaries = new List<SalaryInput>();//ParseSalaries(node.ChildNodes);
-            return new EmployeeInput(name, surname, salaries);
-        }
-
-        private static IList<SalaryInput> ParseSalaries(XmlNodeList nodes)
-        {
-            IList<SalaryInput> result = [];
-            foreach (XmlNode node in nodes)
-                if (node.Name == __salary)
-                {
-                    string amount = node.Attributes[__amount]!.Value;
-                    string mount = node.Attributes[__mount]!.Value;
-                    result.Add(new SalaryInput(amount, mount));
-                }
+            IList<Employee> result = [];
+            while (reader.Read())
+            {
+                if (NeedSkipNode(reader))
+                    continue;
+                (string tmpName, string tmpSurname) = ReadEmployeeAttrs(reader);
+                if (reader.IsEmptyElement)
+                    continue;
+                result.Add(new Employee(tmpName, tmpSurname, ReadSalaries(reader)));
+            }
             return result;
+        }
+
+        private static bool NeedSkipNode(XmlReader xmlReader) =>
+            xmlReader.NodeType != XmlNodeType.Element || xmlReader.Name != __employee || !xmlReader.HasAttributes;
+
+        private static (string, string) ReadEmployeeAttrs(XmlReader reader)
+        {
+            var name = string.Empty;
+            var surname = string.Empty;
+            reader.MoveToFirstAttribute();
+            do
+            {
+                if (reader.Name == __name)
+                    name = reader.Value;
+                if (reader.Name == __surname)
+                    surname = reader.Value;
+            } while (reader.MoveToNextAttribute());
+            return (name, surname);
+        }
+
+        private static List<Salary> ReadSalaries(XmlReader reader)
+        {
+            var result = new List<Salary>();
+            while (reader.NodeType != XmlNodeType.EndElement)
+            {
+                if (reader.Name == __salary && reader.HasAttributes)
+                {
+                    (string amount, string mount) = ReadSalaryAttrs(reader);
+                    result.Add(new Salary(amount, mount));
+                }
+                reader.Read();
+            }
+            return result;
+        }
+
+        private static (string, string) ReadSalaryAttrs(XmlReader reader)
+        {
+            var amount = string.Empty;
+            var mount = string.Empty;
+            reader.MoveToFirstAttribute();
+            do
+            {
+                if (reader.Name == __amount)
+                    amount = reader.Value;
+                if (reader.Name == __mount)
+                    mount = reader.Value;
+            } while (reader.MoveToNextAttribute());
+            return (amount, mount);
         }
     }
 }
