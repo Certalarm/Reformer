@@ -16,7 +16,6 @@ namespace RfrmLib.Utility
         public const string __employees = "Employees";
         public const string __employee = "Employee";
         public const string __salary = "salary";
-        //public const string __salarySum = "salarysum";
         public const string __pay = "Pay";
         public const string __item = "item";
 

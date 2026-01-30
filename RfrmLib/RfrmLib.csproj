@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Controllers\AddItemController.cs" />
     <Compile Include="Controllers\ControllerHelper.cs" />
     <Compile Include="Controllers\MainFlowController.cs" />
@@ -56,11 +55,6 @@
     <Compile Include="Data\Implementation\XmlDataWriter\XmlDataWriterHelper.cs" />
     <Compile Include="Data\Interface\IXmlDataReader.cs" />
     <Compile Include="Data\Interface\IXmlDataWriter.cs" />
-    <Compile Include="Data\Mapper\EmployeeInputMapper.cs" />
-    <Compile Include="Data\Models\EmployeeInput.cs" />
-    <Compile Include="Data\Models\ItemInput.cs" />
-    <Compile Include="Data\Models\PayInput.cs" />
-    <Compile Include="Data\Models\SalaryInput.cs" />
     <Compile Include="Domain\Entity\Employee.cs" />
     <Compile Include="Domain\Entity\Item.cs" />
     <Compile Include="Domain\Entity\Pay.cs" />

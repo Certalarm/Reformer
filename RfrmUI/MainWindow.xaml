@@ -81,7 +81,6 @@
                     Click="Button_AddItem_Click">Добавить Item и запустить обработку</Button>
             </DockPanel>
         </GroupBox>
-
         <GroupBox 
             Header="Результат обработки:" 
             Margin="10">

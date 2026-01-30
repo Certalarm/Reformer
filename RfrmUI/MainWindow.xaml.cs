@@ -81,13 +81,20 @@ namespace RfrmUI
             }
         }
 
-        private void ProcessingMainFlow(string inputFullFilename, string tramsformFullFilename, string outputFullFilename)
+        private void ProcessingMainFlow(
+            string inputFullFilename, 
+            string tramsformFullFilename, 
+            string outputFullFilename)
         {
             MainFlowController controller = new MainFlowController();
             UpdateInvoke(controller.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename));
         }
 
-        private void ProcessingAddItemFlow(string inputFullFilename, string tramsformFullFilename, string outputFullFilename, string item)
+        private void ProcessingAddItemFlow(
+            string inputFullFilename, 
+            string tramsformFullFilename, 
+            string outputFullFilename, 
+            string item)
         {
             AddItemController controller = new AddItemController();
             UpdateInvoke(controller.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename, item));

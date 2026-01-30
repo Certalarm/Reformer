@@ -10,7 +10,9 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
 {
     internal static class EmployeeReaderHelper
     {
-        internal static (IEnumerable<Employee>, string) ReadWithTransform(string xmlInputFileFullname, string xmlStyleSheetFullname)
+        internal static (IEnumerable<Employee>, string) ReadWithTransform(
+            string xmlInputFileFullname, 
+            string xmlStyleSheetFullname)
         {
             var transform = new XslCompiledTransform();
             try

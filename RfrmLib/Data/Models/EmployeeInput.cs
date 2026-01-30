@@ -9,12 +9,12 @@ namespace RfrmLib.Data.Models
         public IList<SalaryInput> Salaries { get; set; }
 
         #region .ctors
-        public EmployeeInput(string name, string surname, IList<SalaryInput> salaries = default)
-        {
-            Name = name;
-            Surname = surname;
-            Salaries = salaries ?? [];
-        }
+        //public EmployeeInput(string name, string surname, IList<SalaryInput> salaries = default)
+        //{
+        //    Name = name;
+        //    Surname = surname;
+        //    Salaries = salaries ?? [];
+        //}
         #endregion
     }
 }

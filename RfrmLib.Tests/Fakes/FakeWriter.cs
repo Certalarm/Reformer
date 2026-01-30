@@ -8,12 +8,12 @@ namespace RfrmLib.Tests.Fakes
     {
         public string Write(IEnumerable<Employee> employees, string xmlFullFilename)
         {
-            return "";
+            return string.Empty;
         }
 
         public string Write(Pay pay, string xmlFullFilename)
         {
-            return "";
+            return string.Empty;
         }
     }
 }

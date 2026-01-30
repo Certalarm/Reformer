@@ -23,7 +23,6 @@ namespace RfrmLib.Data.Implementation.XmlDataReader
                     items.Add(item);
             }
             return (new Pay(string.Empty, items), string.Empty);
-
         }
 
         private static bool NeedSkipNode(XmlReader xmlReader) =>

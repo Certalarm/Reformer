@@ -13,7 +13,10 @@ namespace RfrmLib.Controllers
 {
     internal static class ControllerHelper
     {
-        internal static IEnumerable<string> HandleMainFlow(string inputDataFilename, string stylesheetFilename, string outputDataFilename)
+        internal static IEnumerable<string> HandleMainFlow(
+            string inputDataFilename, 
+            string stylesheetFilename, 
+            string outputDataFilename)
         {
             var reader = new XmlDataReader();
             AddSalarySumInteractor assi = new AddSalarySumInteractor(reader);
