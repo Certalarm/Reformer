@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
@@ -11,6 +12,7 @@ namespace RfrmUI
     public partial class MainWindow : Window
     {
         private const string __errorItem = "All Item fields must be filled in!";
+        private const string __explorerName = "explorer.exe";
         private const string __inputDir = "_inputdata";
         private const string __outputDir = "_outputdata";
         private const string __inputFilename = "data1.xml";
@@ -18,7 +20,7 @@ namespace RfrmUI
         private const string __outputFilename = "employees.xml";
 
         public ObservableCollection<string> Folders { get; set; } = new ObservableCollection<string>();
-        public ObservableCollection<string> Report{ get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Report { get; set; } = new ObservableCollection<string>();
 
         public MainWindow()
         {
@@ -32,6 +34,16 @@ namespace RfrmUI
             Folders.Add(inputFullDir);
             Folders.Add(outputFullDir);
             ReportLW.ItemsSource = Report;
+        }
+
+        private void Button_OpenInputData_Click(object sender, RoutedEventArgs e)
+        {
+            StartProcess(__explorerName, Folders[0]);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StartProcess(__explorerName, Folders[1]);
         }
 
         private void Button_MainFlow_Clock(object sender, RoutedEventArgs e)
@@ -58,16 +70,6 @@ namespace RfrmUI
             }
         }
 
-        private void UpdateInvoke(IEnumerable<string> report)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                Report.Clear();
-                foreach (var entry in report)
-                    Report.Add(entry);
-            });
-        }
-
         private void ProcessingMainFlow(string inputFullFilename, string tramsformFullFilename, string outputFullFilename)
         {
             MainFlowController controller = new MainFlowController();
@@ -78,6 +80,24 @@ namespace RfrmUI
         {
             AddItemController controller = new AddItemController();
             UpdateInvoke(controller.Handle(inputFullFilename, tramsformFullFilename, outputFullFilename, item));
+        }
+
+        private void UpdateInvoke(IEnumerable<string> report)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                Report.Clear();
+                foreach (var entry in report)
+                    Report.Add(entry);
+            });
+        }
+
+        private static void StartProcess(string processName, string args)
+        {
+            using Process proc = new();
+            proc.StartInfo.FileName = processName;
+            proc.StartInfo.Arguments = args;
+            proc.Start();
         }
 
         private bool IsItemTBsNotEmpty() =>

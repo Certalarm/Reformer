@@ -28,10 +28,10 @@
         <GroupBox DockPanel.Dock="Top" Height="310" Header="Результат обработки:" Margin="10">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="100">
-                    <Button Margin="10 0 5 5" Height="75">
+                    <Button Margin="10 0 5 5" Height="75" Click="Button_OpenInputData_Click">
                         <TextBlock Width="70" TextWrapping="Wrap" TextAlignment="Center" Text="Открыть папку _InputData"/>
                     </Button>
-                    <Button Margin="10 5 5 5" Height="75">
+                    <Button Margin="10 5 5 5" Height="75" Click="Button_Click">
                         <TextBlock Width="70" TextWrapping="Wrap" TextAlignment="Center" Text="Открыть папку _OutputData"/>
                     </Button>
                 </StackPanel>
