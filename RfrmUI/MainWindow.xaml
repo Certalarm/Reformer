@@ -13,7 +13,7 @@
             <DockPanel>
                 <DockPanel Height="25">
                     <TextBlock Background="AliceBlue" DockPanel.Dock="Left" Text="{Binding Folders[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="650"></TextBlock>
-                    <Button IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=RadioButton}}" DockPanel.Dock="Right" Margin="10 0 0 0" Width="65" Click="ButtonIn_Click">Выбрать</Button>
+                    <Button IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=RadioButton}}" DockPanel.Dock="Right" Margin="10 0 0 0" Width="65">Выбрать</Button>
                 </DockPanel>
             </DockPanel>
         </GroupBox>
@@ -21,50 +21,56 @@
             <DockPanel Height="25">
                 <DockPanel>
                     <TextBlock Background="AliceBlue" DockPanel.Dock="Left" Text="{Binding Folders[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="650"></TextBlock>
-                    <Button IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=RadioButton}}" DockPanel.Dock="Right" Margin="10 0 0 0" Width="65" Click="ButtonOut_Click">Выбрать</Button>
+                    <Button IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=RadioButton}}" DockPanel.Dock="Right" Margin="10 0 0 0" Width="65">Выбрать</Button>
                 </DockPanel>
             </DockPanel>
         </GroupBox>
         <GroupBox DockPanel.Dock="Top" Height="310" Header="Результат обработки:" Margin="10">
             <DockPanel>
-                <ListView DockPanel.Dock="Top" Height="250"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="15*"/>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="25*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Width="250" Height="25">Запустить обработку</Button>    
-                </Grid>
+                <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="100">
+                    <Button Margin="10 0 5 5" Height="75">
+                        <TextBlock Width="70" TextWrapping="Wrap" TextAlignment="Center" Text="Открыть папку _InputData"/>
+                    </Button>
+                    <Button Margin="10 5 5 5" Height="75">
+                        <TextBlock Width="70" TextWrapping="Wrap" TextAlignment="Center" Text="Открыть папку _OutputData"/>
+                    </Button>
+                </StackPanel>
+                <DockPanel>
+                    <ListView x:Name="ReportLW" DockPanel.Dock="Top" Height="250"/>
+                    <DockPanel>
+                        <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Width="250" Height="25" Click="Button_MainFlow_Clock">Запустить обработку</Button>    
+                        </Grid>
+                    </DockPanel>
+                </DockPanel>
             </DockPanel>
         </GroupBox>
         <GroupBox Header="Добавить Item:" Margin="10 0 10 10">
             <DockPanel>
-                <UniformGrid Columns="4" DockPanel.Dock="Top" Margin="0 5 0 0" Height="50">
+                <UniformGrid x:Name="ItemUG" Columns="4" DockPanel.Dock="Top" Margin="0 5 0 0" Height="50">
                     <GroupBox Header="Name">
-                        <TextBox Margin="2" Background="Azure">lalala</TextBox>
+                        <TextBox x:Name="NameTB" Margin="2" Background="Azure" />
                     </GroupBox>
                     <GroupBox Header="Surname">
-                        <TextBox Margin="2" Background="Azure">lalala</TextBox>
+                        <TextBox x:Name="SurnameTB" Margin="2" Background="Azure"></TextBox>
                     </GroupBox>
                     <GroupBox Header="Amount">
-                        <TextBox Margin="2" Background="Azure">lalala</TextBox>
+                        <TextBox x:Name="AmountTB" Margin="2" Background="Azure"></TextBox>
                     </GroupBox>
                     <GroupBox Header="Mount">
-                        <TextBox Margin="2" Background="Azure">lalala</TextBox>
+                        <TextBox x:Name="MountTB" Margin="2" Background="Azure"></TextBox>
                     </GroupBox>
                 </UniformGrid>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="11*"/>
-                        <ColumnDefinition Width="27*"/>
-                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="65*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Width="250" Height="25">Добавить Item и запустить обработку</Button>
-                    <Button Grid.Column="2" Width="190" Height="25" >Открыть папку __InputData</Button>
-                    <Button Grid.Column="3" Width="190" Height="25">Открыть папку __OutputData</Button>
+                    <Button Grid.Column="0" Width="250" Height="25" Click="Button_AddItem_Click">Добавить Item и запустить обработку</Button>
                 </Grid>
             </DockPanel>
         </GroupBox>
