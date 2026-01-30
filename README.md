@@ -69,6 +69,7 @@ Xslt-преобразование:
 Также есть файлы решения задачи по шагам. Для `Data1.xml` [здесь](https://github.com/Certalarm/Reformer/blob/dev/_InputData/transform1.xslt). Для `Data2.xml` [здесь](https://github.com/Certalarm/Reformer/blob/dev/_InputData/transform2.xslt).
 
 ### `TASK-2`
+![image](https://github.com/Certalarm/Reformer/blob/dev/_assets/TASK-2_main.png)
 #### ЧТО СДЕЛАНО?
 Все пункты ТЗ, включая необязательный 5 пункт.
 #### ДОПОЛНИТЕЛЬНО
