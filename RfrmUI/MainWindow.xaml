@@ -18,11 +18,11 @@
                 <DockPanel Height="25">
                     <Button 
                         DockPanel.Dock="Right" 
-                        Margin="10 0 10 0" 
-                        Width="65" 
+                        Margin="10 0 5 0" 
+                        Width="85" 
                         Click="Button_ChangeInputFolder_Click">Выбрать</Button>
                     <TextBlock 
-                        Margin="10 0 0 0" 
+                        Margin="5 0 0 0" 
                         Padding="5 2 0 0" 
                         Background="AliceBlue" 
                         Text="{Binding Folders[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -38,20 +38,51 @@
                 <DockPanel>
                     <Button 
                         DockPanel.Dock="Right" 
-                        Margin="10 0 10 0" 
-                        Width="65" 
+                        Margin="10 0 5 0" 
+                        Width="85" 
                         Click="Button_ChangeOutputFolder_Click">Выбрать</Button>
                     <TextBlock 
-                        Margin="10 0 0 0" 
+                        Margin="5 0 0 0" 
                         Padding="5 2 0 0" 
                         Background="AliceBlue" 
                         Text="{Binding Folders[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </DockPanel>
             </DockPanel>
         </GroupBox>
+        <GroupBox
+            DockPanel.Dock="Bottom" 
+            Header="Добавить Item:" 
+            Margin="10 0 10 10">
+            <DockPanel>
+                <UniformGrid 
+                    x:Name="ItemUG" 
+                    Columns="4" 
+                    DockPanel.Dock="Top" 
+                    Margin="0 5 0 0" 
+                    Height="50">
+                    <GroupBox Header="Name">
+                        <TextBox x:Name="NameTB" Margin="2" Background="Azure"/>
+                    </GroupBox>
+                    <GroupBox Header="Surname">
+                        <TextBox x:Name="SurnameTB" Margin="2" Background="Azure"/>
+                    </GroupBox>
+                    <GroupBox Header="Amount">
+                        <TextBox x:Name="AmountTB" Margin="2" Background="Azure"/>
+                    </GroupBox>
+                    <GroupBox Header="Mount">
+                        <TextBox x:Name="MountTB" Margin="2" Background="Azure"/>
+                    </GroupBox>
+                </UniformGrid>
+                <Button 
+                    HorizontalAlignment="Left"
+                    Margin="10 10 0 10"
+                    Width="250" 
+                    Height="25" 
+                    Click="Button_AddItem_Click">Добавить Item и запустить обработку</Button>
+            </DockPanel>
+        </GroupBox>
+
         <GroupBox 
-            DockPanel.Dock="Top" 
-            Height="310" 
             Header="Результат обработки:" 
             Margin="10">
             <DockPanel>
@@ -81,60 +112,19 @@
                     </Button>
                 </StackPanel>
                 <DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom">
+                        <Button 
+                            HorizontalAlignment="Left"
+                            Width="250" 
+                            Height="25"
+                            Margin="10"
+                            Click="Button_MainFlow_Clock">Запустить обработку</Button>    
+                    </DockPanel>
                     <ListView 
                         x:Name="ReportLW" 
-                        DockPanel.Dock="Top" 
-                        Height="250"/>
-                    <DockPanel>
-                        <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40*"/>
-                            <ColumnDefinition Width="60*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button 
-                            Grid.Column="0" 
-                            Width="250" 
-                            Height="25" 
-                            Click="Button_MainFlow_Clock">Запустить обработку</Button>    
-                        </Grid>
-                    </DockPanel>
+                        Margin="5 0 0 0"
+                        FontFamily="Courier New"/>
                 </DockPanel>
-            </DockPanel>
-        </GroupBox>
-        <GroupBox 
-            Header="Добавить Item:" 
-            Margin="10 0 10 10">
-            <DockPanel>
-                <UniformGrid 
-                    x:Name="ItemUG" 
-                    Columns="4" 
-                    DockPanel.Dock="Top" 
-                    Margin="0 5 0 0" 
-                    Height="50">
-                    <GroupBox Header="Name">
-                        <TextBox x:Name="NameTB" Margin="2" Background="Azure"/>
-                    </GroupBox>
-                    <GroupBox Header="Surname">
-                        <TextBox x:Name="SurnameTB" Margin="2" Background="Azure"/>
-                    </GroupBox>
-                    <GroupBox Header="Amount">
-                        <TextBox x:Name="AmountTB" Margin="2" Background="Azure"/>
-                    </GroupBox>
-                    <GroupBox Header="Mount">
-                        <TextBox x:Name="MountTB" Margin="2" Background="Azure"/>
-                    </GroupBox>
-                </UniformGrid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="65*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button 
-                        Grid.Column="0" 
-                        Width="250" 
-                        Height="25" 
-                        Click="Button_AddItem_Click">Добавить Item и запустить обработку</Button>
-                </Grid>
             </DockPanel>
         </GroupBox>
     </DockPanel>
